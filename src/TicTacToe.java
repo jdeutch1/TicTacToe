@@ -35,6 +35,8 @@ public class TicTacToe
     private Square[][] board;
     private boolean isGameOver;
 
+    private TicTacToeViewer tWindow;
+
     /**
      * Constructor which initialized the board with BLANKs.
      * The winner is also initialized to BLANK.
@@ -44,9 +46,10 @@ public class TicTacToe
     public TicTacToe() {
         // Initialize Squares in the board
         this.board = new Square[3][3];
+        tWindow = new TicTacToeViewer(this);
         for(int row = 0; row < this.board.length; row++) {
             for(int col = 0; col< this.board[row].length; col++) {
-                this.board[row][col] = new Square(row, col);
+                this.board[row][col] = new Square(row, col, tWindow);
             }
         }
 
@@ -106,6 +109,7 @@ public class TicTacToe
         Scanner input = new Scanner(System.in);
 
         System.out.println("Welcome to Tic Tac Toe!");
+        tWindow.repaint();
 
         // Loop until there is a winner or no more turns
         while(!this.checkWin() && this.checkTurn()) {
@@ -122,6 +126,7 @@ public class TicTacToe
         }
 
         this.printBoard();
+
         this.isGameOver = true;
 
         // Determine if there was a winner
@@ -154,6 +159,7 @@ public class TicTacToe
             this.board[row][col].setMarker(O_MARKER);
         }
         this.turn++;
+
     }
 
     /**
@@ -280,6 +286,7 @@ public class TicTacToe
             row++;
             System.out.println();
         }
+        tWindow.repaint();
     }
 
     public static void main(String[] args) {
