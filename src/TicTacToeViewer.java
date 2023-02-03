@@ -31,7 +31,7 @@ public class TicTacToeViewer extends JFrame {
             }
         }
 
-        g.setFont(new Font("Verdana", Font.PLAIN, 18));
+        g.setFont(new Font("Verdana", Font.ITALIC, 18));
         g.setColor(Color.RED);
 
         for(int i = 0; i < 3; i++)
