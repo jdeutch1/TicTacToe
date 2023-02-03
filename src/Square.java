@@ -17,9 +17,9 @@ public class Square {
 
     private String marker;
 
-    private  final int START_ROW = 100;
-    private final int START_COL = 200;
-    private final int BOARD_LENGTH = 600;
+    private  final int START_ROW = 50;
+    private final int START_COL = 50;
+    private final int BOARD_LENGTH = 300;
     private int row;
     private int col;
     private Image xImage;
@@ -79,9 +79,11 @@ public class Square {
     //Top left corner
     //draw rect
     //imageobserver is view
-    int x = START_ROW + (row+1) * BOARD_LENGTH/3;
-    int y = START_COL + (col+1) * BOARD_LENGTH/3;
+
     public void draw(Graphics g){
+        int x = START_COL + (col+1) * BOARD_LENGTH/3;
+        int y = START_ROW + (row+1) * BOARD_LENGTH/3;
+
         if(isWinningSquare)
         {
             g.setColor(Color.GREEN);
@@ -93,6 +95,8 @@ public class Square {
         else if (marker.equals(TicTacToe.X_MARKER)) {
             g.drawImage(xImage, x, y, BOARD_LENGTH/3, BOARD_LENGTH/3, observer);
         }
+        g.setColor(Color.BLACK);
+        g.drawRect(x, y, BOARD_LENGTH/3, BOARD_LENGTH/3);
 
 
     }

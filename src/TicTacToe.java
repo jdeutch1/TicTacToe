@@ -10,10 +10,17 @@
  * @version: Jan 2023
  */
 
+import java.awt.*;
 import java.util.Scanner;
 
 public class TicTacToe
 {
+    private  final int START_ROW = 50;
+    private final int START_COL = 50;
+    private final int BOARD_LENGTH = 300;
+    private static final int WINDOW_WIDTH = 600;
+    private static final int WINDOW_HEIGHT = 600;
+
     /** Board Markers **/
     public static final String X_MARKER = "X";
     public static final String O_MARKER = "O";
@@ -46,12 +53,12 @@ public class TicTacToe
     public TicTacToe() {
         // Initialize Squares in the board
         this.board = new Square[3][3];
-        tWindow = new TicTacToeViewer(this);
         for(int row = 0; row < this.board.length; row++) {
             for(int col = 0; col< this.board[row].length; col++) {
                 this.board[row][col] = new Square(row, col, tWindow);
             }
         }
+        tWindow = new TicTacToeViewer(this);
 
         // Initialize winning stats variables
         this.isGameOver = false;
@@ -287,6 +294,27 @@ public class TicTacToe
             System.out.println();
         }
         tWindow.repaint();
+    }
+
+    public void draw(Graphics g)
+    {
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Verdana", Font.BOLD, 36));
+        if (checkWin())
+        {
+            if (winner.equals(O_MARKER))
+            {
+                g.drawString("O WINS",START_COL + BOARD_LENGTH/2,START_ROW + BOARD_LENGTH * 3/2);
+            }
+            else
+            {
+                g.drawString("X WINS",START_COL + BOARD_LENGTH/2,START_ROW + BOARD_LENGTH * 3/2);
+            }
+        }
+        else if(checkTie())
+        {
+            g.drawString("IT'S A TIE!", START_COL + BOARD_LENGTH/2,START_ROW + BOARD_LENGTH * 3/2);
+        }
     }
 
     public static void main(String[] args) {
