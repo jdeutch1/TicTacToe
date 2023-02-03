@@ -9,13 +9,7 @@ public class TicTacToeViewer extends JFrame {
     private static final int WINDOW_WIDTH = 600;
     private static final int WINDOW_HEIGHT = 600;
     private Square[][] tBoard;
-
     private TicTacToe t;
-    // TODO: Complete this class
-
-    //Display winner
-    //Draw axis
-
     public TicTacToeViewer(TicTacToe t){
         this.t = t;
         tBoard = t.getBoard();
